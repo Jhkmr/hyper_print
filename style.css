@@ -1,0 +1,43 @@
+html{
+	height:  100%;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+
+body {
+	height: 100%;
+	padding: 1%;
+	margin: 0;
+  box-sizing: border-box;
+	display: grid;
+	/* position: fixed; */
+	grid-template-columns: repeat(2, 8%) 16% repeat(2, 8%) 4% repeat(3, 1fr);
+	grid-template-rows: 50% 50%;
+}
+
+h1 {
+  margin: 0;
+	padding: 0;
+  grid-column: 1;
+	grid-row: 1;
+
+	/* position: fixed; */
+	font-family: "Unica77MonoRegular", monospace;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.contents {
+  font-family: "Unica77Regular", sans-serif;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  grid-row: 1;
+  align-content: end;
+}
+
+a {
+  all: unset;
+	cursor: pointer;
+}
