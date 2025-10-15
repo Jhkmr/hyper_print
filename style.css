@@ -1,0 +1,71 @@
+html{
+	height:  100%;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+
+body {
+	height: 100%;
+	padding: 1%;
+	margin: 0;
+  	box-sizing: border-box;
+	display: block;
+	/* position: fixed; */
+}
+
+h1 {
+  margin: 0;
+	padding: 0;
+  grid-column: 1;
+	grid-row: 1;
+	/* position: fixed; */
+	font-family: "Unica77MonoRegular", monospace;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.raster {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: auto;
+	counter-reset: number 0;
+}
+
+.contents {
+  font-family: "Unica77Regular", sans-serif;
+  font-size: 11px;
+  margin: 0;
+  padding: 5px;
+  height: 20vh;
+  /* display: flex; */
+  position: relative;
+}
+
+a {
+  all: unset;
+cursor: pointer;
+}
+
+.block {
+	all: unset;
+	cursor: pointer;
+}
+
+h1{
+	width:80%;
+}
+
+div.contents::after{
+	counter-increment: number;
+	content: "( " counter(number) " )";
+	position: absolute;
+	right: 0;
+	font-family: "Unica77Regular", sans-serif;
+	font-size: 11px;
+}
+
+p {
+	justify-self: end;
+	align-self: end;
+}
