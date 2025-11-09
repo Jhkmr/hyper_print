@@ -15,13 +15,13 @@ body {
 }
 
 h1 {
-  margin: 0;
+  	margin: 0;
 	padding: 0;
-  grid-column: 1;
+  	grid-column: 1;
 	grid-row: 1;
 	/* position: fixed; */
-	font-family: "Unica77MonoRegular", monospace;
-	font-size: 10px;
+	font-family: "Ortica Angular Bold";
+	font-size: 14px;
 	font-weight: normal;
 }
 
@@ -33,18 +33,21 @@ h1 {
 }
 
 .contents {
-  font-family: "Unica77Regular", sans-serif;
-  font-size: 11px;
-  margin: 0;
-  padding: 5px;
-  height: 20vh;
-  /* display: flex; */
-  position: relative;
+	margin: 0;
+	padding: 10px;
+	height: 20vh;
+	/* display: flex; */
+	position: relative;
+	cursor: ne-resize;
+}
+
+.contents img{
+	display: none;
 }
 
 a {
-  all: unset;
-cursor: pointer;
+  	all: unset;
+	cursor: pointer;
 }
 
 .block {
@@ -56,16 +59,47 @@ h1{
 	width:80%;
 }
 
-div.contents::after{
-	counter-increment: number;
-	content: "( " counter(number) " )";
-	position: absolute;
-	right: 0;
-	font-family: "Unica77Regular", sans-serif;
-	font-size: 11px;
+h2{
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
 }
 
-p {
-	justify-self: end;
-	align-self: end;
+h2::after{
+	counter-increment: number;
+	content: "( " counter(number, decimal-leading-zero) " )";
+	position: absolute;
+	right: 10px;
+	padding-top: 2.9px;
+	font-size: 12.5px;
+}
+
+.hover {
+	position: fixed;
+	top: 50%; 
+  	left: 50%;              
+  	transform: translate(-50%, -50%);  
+ 	z-index: 1000;          
+  	text-align: center;
+	pointer-events: none;  
+}
+
+.hover p {
+	margin: 0;
+	font-family: "Ortica Linear Regular";
+	font-size: 76px;
+}
+
+/* image on click */
+
+.floating-image {
+  position: fixed;         
+  top: 0;
+  left: 0;
+  width: 150px;         
+  pointer-events: none;   
+  /* transform: translate(-50%, -50%); */
+  transition: transform 0.05s linear;
+  z-index: 10;
 }
