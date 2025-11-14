@@ -41,6 +41,24 @@ h1 {
 	cursor: ne-resize;
 }
 
+.hide {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	hyphens: auto;
+	color: #818181;
+	line-height: 13.5px;
+
+	display: none;
+}
+
+.contents:hover .hide {
+  display: block;
+}
+
 .contents img{
 	display: none;
 }
@@ -56,7 +74,10 @@ a {
 }
 
 h1{
-	width:80%;
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
 }
 
 h2{
@@ -75,6 +96,14 @@ h2::after{
 	font-size: 12.5px;
 }
 
+.webcam {
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
+	cursor: url('files/camera_cursor.png') 9 9, auto;
+}
+
 .hover {
 	position: fixed;
 	top: 50%; 
@@ -91,15 +120,22 @@ h2::after{
 	font-size: 76px;
 }
 
+
 /* image on click */
 
 .floating-image {
-  position: fixed;         
+  width: 150px;         
+}
+
+.floating-stack {
+  position: fixed;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.floating-stack img {
+  position: absolute;
   top: 0;
   left: 0;
-  width: 150px;         
-  pointer-events: none;   
-  /* transform: translate(-50%, -50%); */
-  transition: transform 0.05s linear;
-  z-index: 10;
 }
+ 
