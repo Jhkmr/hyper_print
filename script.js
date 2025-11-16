@@ -80,8 +80,9 @@ function createStack(firstImg) {
 // select images & replace "hyper"
 
 contentsDivs.forEach(div => {
-  let clickCount = 0;
-  const imgs = Array.from(div.querySelectorAll('img'));
+
+  // Each div starts at first image
+  div.dataset.index = 0;
 
   div.addEventListener('mouseenter', () => {
     const title = div.querySelector('span');
@@ -93,18 +94,26 @@ contentsDivs.forEach(div => {
   });
 
   div.addEventListener('click', () => {
-    if (imgs.length === 0) return;
+    const images = Array.from(div.querySelectorAll('img'));
+    const total = images.length;
 
-    const imgEl = imgs.shift(); 
-    if (!imgEl) return;   
+    // If no images OR finished the cycle, stop.
+    let idx = parseInt(div.dataset.index, 10);
+    if (idx >= total) return; // ➜ all images used once
 
+    const imgEl = images[idx];
+
+    // Increment index for next click
+    div.dataset.index = idx + 1;
+
+    // Create new stack if none exists
     if (!globalStack) {
       globalStack = createStack(imgEl);
     }
 
+    // Clone into stack
     const clone = imgEl.cloneNode();
     clone.classList.add("floating-image");
-
     clone.style.position = "absolute";
     clone.style.left = "0px";
     clone.style.top = "0px";
@@ -115,4 +124,22 @@ contentsDivs.forEach(div => {
 
     globalStack.appendChild(clone);
   });
+
+});
+
+
+// remove stacked images
+
+const clearBtn = document.getElementById('clearStack');
+
+clearBtn.addEventListener('click', () => {
+  if (globalStack) {
+    globalStack.remove();
+    globalStack = null;
+  }
+
+  contentsDivs.forEach(div => {
+    div.dataset.index = 0;
+  });
+
 });
