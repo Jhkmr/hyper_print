@@ -2,22 +2,61 @@ const contentsDivs = document.querySelectorAll('.contents');
 const placeholder = document.getElementById('placeholder');
 
 let globalStack = null;
-let dragging = false;
-let dragOffsetX = 0;
-let dragOffsetY = 0;
-let targetX = 0;
-let targetY = 0;
 
-// -------------------------------
-// CREATE GLOBAL STACK
-// -------------------------------
+// dragging the image stack
+
+function makeDraggable(container, movingScan) {
+  let state = { distX: 0, distY: 0 };
+
+  function onDown(e) {
+    e.preventDefault();
+    const evt = e.type === 'touchstart' ? e.changedTouches[0] : e;
+
+    state.distX = Math.abs(movingScan.offsetLeft - evt.clientX);
+    state.distY = Math.abs(movingScan.offsetTop - evt.clientY);
+
+    movingScan.style.pointerEvents = "none";
+  }
+
+  function onUp() {
+    movingScan.style.pointerEvents = "initial";
+  }
+
+  function onMove(e) {
+    if (movingScan.style.pointerEvents !== "none") return;
+
+    const evt = e.type === 'touchmove' ? e.changedTouches[0] : e;
+
+    let newX = evt.clientX - state.distX;
+    let newY = evt.clientY - state.distY;
+
+    // keep inside viewport
+    newX = Math.max(0, Math.min(newX, window.innerWidth - movingScan.offsetWidth));
+    newY = Math.max(0, Math.min(newY, window.innerHeight - movingScan.offsetHeight));
+
+    movingScan.style.left = `${newX}px`;
+    movingScan.style.top = `${newY}px`;
+  }
+
+  // mouse
+  movingScan.addEventListener("mousedown", onDown);
+  container.addEventListener("mousemove", onMove);
+  container.addEventListener("mouseup", onUp);
+
+  // touch
+  movingScan.addEventListener("touchstart", onDown);
+  container.addEventListener("touchmove", onMove);
+  container.addEventListener("touchend", onUp);
+}
+
+// creates a container for stacked images that can be dragged
+
 function createStack(firstImg) {
   const stack = document.createElement('div');
   stack.classList.add('floating-stack');
   stack.style.position = 'fixed';
   stack.style.cursor = 'grab';
 
-  // Position it randomly in the viewport
   const rect = firstImg.getBoundingClientRect();
   const w = rect.width;
   const h = rect.height;
@@ -25,57 +64,21 @@ function createStack(firstImg) {
   const maxX = window.innerWidth - w;
   const maxY = window.innerHeight - h;
 
-  targetX = Math.random() * maxX;
-  targetY = Math.random() * maxY;
+  const startX = Math.random() * maxX;
+  const startY = Math.random() * maxY;
 
-  stack.style.left = `${targetX}px`;
-  stack.style.top = `${targetY}px`;
+  stack.style.left = `${startX}px`;
+  stack.style.top = `${startY}px`;
 
   document.body.appendChild(stack);
 
-  // -------------------------
-  // DRAGGING (Optimized!)
-  // -------------------------
-  stack.addEventListener("mousedown", (e) => {
-    dragging = true;
-    stack.style.cursor = "grabbing";
-    dragOffsetX = e.clientX - targetX;
-    dragOffsetY = e.clientY - targetY;
-  });
-
-  document.addEventListener("mouseup", () => {
-    dragging = false;
-    if (stack) stack.style.cursor = "grab";
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-
-    // Compute new target (we update visually via rAF for speed)
-    targetX = e.clientX - dragOffsetX;
-    targetY = e.clientY - dragOffsetY;
-
-    // Keep inside viewport
-    targetX = Math.max(0, Math.min(targetX, window.innerWidth - stack.offsetWidth));
-    targetY = Math.max(0, Math.min(targetY, window.innerHeight - stack.offsetHeight));
-  });
-
-  // rAF loop — fast, smooth updates
-  function update() {
-    if (stack) {
-      stack.style.left = `${targetX}px`;
-      stack.style.top = `${targetY}px`;
-    }
-    requestAnimationFrame(update);
-  }
-  update();
+  makeDraggable(document.body, stack);
 
   return stack;
 }
 
-// -------------------------------
-// HANDLE CLICK ON CONTENT BLOCKS
-// -------------------------------
+// select images & replace "hyper"
+
 contentsDivs.forEach(div => {
   let clickCount = 0;
   const imgs = Array.from(div.querySelectorAll('img'));
@@ -92,26 +95,22 @@ contentsDivs.forEach(div => {
   div.addEventListener('click', () => {
     if (imgs.length === 0) return;
 
-    const imgEl = imgs[clickCount % imgs.length];
-    clickCount++;
+    const imgEl = imgs.shift(); 
+    if (!imgEl) return;   
 
-    // Create stack the first time
     if (!globalStack) {
       globalStack = createStack(imgEl);
     }
 
-    // Clone new image
     const clone = imgEl.cloneNode();
     clone.classList.add("floating-image");
 
-    // Layer directly on top
     clone.style.position = "absolute";
     clone.style.left = "0px";
     clone.style.top = "0px";
     clone.style.zIndex = globalStack.children.length;
 
-    // Random slight rotation
-    const rotation = (Math.random() * 12) - 6; // -6 to +6 degrees
+    const rotation = (Math.random() * 12) - 6;
     clone.style.transform = `rotate(${rotation}deg)`;
 
     globalStack.appendChild(clone);

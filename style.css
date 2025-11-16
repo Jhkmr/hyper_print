@@ -14,17 +14,6 @@ body {
 	/* position: fixed; */
 }
 
-h1 {
-  	margin: 0;
-	padding: 0;
-  	grid-column: 1;
-	grid-row: 1;
-	/* position: fixed; */
-	font-family: "Ortica Angular Bold";
-	font-size: 14px;
-	font-weight: normal;
-}
-
 .raster {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
@@ -36,9 +25,59 @@ h1 {
 	margin: 0;
 	padding: 10px;
 	height: 20vh;
-	/* display: flex; */
+	display: block;
 	position: relative;
 	cursor: ne-resize;
+}
+
+h1{
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
+}
+
+h2{
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
+}
+
+h2::after{
+	counter-increment: number;
+	content: "( " counter(number, decimal-leading-zero) " )";
+	position: absolute;
+	right: 10px;
+	padding-top: 2.9px;
+	font-size: 12.5px;
+}
+
+.webcam {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	hyphens: auto;
+	color: #818181;
+}
+
+.webcam a {
+	cursor: url('files/camera_cursor.png') 9 9, pointer;
+}
+
+.trash {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	color: #818181;
+	position: absolute;
+	/* bottom: 0; */
 }
 
 .hide {
@@ -74,37 +113,6 @@ a {
 	cursor: pointer;
 }
 
-h1{
-	font-family: "Ortica Linear Regular";
-	font-size: 16px;
-	font-weight: normal;
-  	margin: 0;
-}
-
-h2{
-	font-family: "Ortica Linear Regular";
-	font-size: 16px;
-	font-weight: normal;
-  	margin: 0;
-}
-
-h2::after{
-	counter-increment: number;
-	content: "( " counter(number, decimal-leading-zero) " )";
-	position: absolute;
-	right: 10px;
-	padding-top: 2.9px;
-	font-size: 12.5px;
-}
-
-.webcam {
-	font-family: "Ortica Linear Regular";
-	font-size: 16px;
-	font-weight: normal;
-  	margin: 0;
-	cursor: url('files/camera_cursor.png') 9 9, auto;
-}
-
 .hover {
 	position: fixed;
 	top: 50%; 
@@ -124,8 +132,12 @@ h2::after{
 
 /* image on click */
 
-.floating-image {
-  width: 150px;         
+.thermalSmall {
+  width: 150px;     
+}
+
+.thermalWide {
+	width: 300px;
 }
 
 .floating-stack {
