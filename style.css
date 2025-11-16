@@ -54,7 +54,6 @@ h2::after{
 }
 
 .webcam {
-	cursor: url('files/camera_cursor.png') 9 9, auto;
 	font-family: "Ortica Linear Regular";
 	font-size: 12px;
 	font-weight: normal;
@@ -63,6 +62,10 @@ h2::after{
 	padding-top: 2%;
 	hyphens: auto;
 	color: #818181;
+}
+
+.webcam a {
+	cursor: url('files/camera_cursor.png') 9 9, pointer;
 }
 
 .trash {
