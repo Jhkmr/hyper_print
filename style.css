@@ -1,0 +1,167 @@
+html{
+	height:  100%;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+
+body {
+	height: 100%;
+	padding: 1%;
+	margin: 0;
+  	box-sizing: border-box;
+	display: block;
+	/* position: fixed; */
+}
+
+.raster {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: auto;
+	counter-reset: number 0;
+}
+
+.contents {
+	margin: 0;
+	padding: 10px;
+	height: 21vh;
+	display: block;
+	position: relative;
+	cursor: ne-resize;
+}
+
+h1{
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
+}
+
+h2{
+	font-family: "Ortica Linear Regular";
+	font-size: 16px;
+	font-weight: normal;
+  	margin: 0;
+}
+
+h2::after{
+	counter-increment: number;
+	content: "( " counter(number, decimal-leading-zero) " )";
+	position: absolute;
+	right: 25px;
+	padding-top: 2.9px;
+	font-size: 12.5px;
+}
+
+.webcam {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	hyphens: auto;
+	color: #818181;
+}
+
+.webcam a {
+	cursor: url('files/camera_cursor.png') 9 9, pointer;
+}
+
+.clear {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	color: #818181;
+	position: absolute;
+	cursor: no-drop;
+	/* bottom: 0; */
+}
+
+.hide {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	hyphens: auto;
+	color: #818181;
+	line-height: 13.5px;
+
+	display: none;
+}
+
+.contents:hover .hide {
+  display: block;
+}
+
+.contents img{
+	display: none;
+}
+
+a {
+  	all: unset;
+	cursor: pointer;
+}
+
+.block {
+	all: unset;
+	cursor: pointer;
+}
+
+.hover {
+	position: fixed;
+	top: 50%; 
+  	left: 50%;              
+  	transform: translate(-50%, -50%);  
+ 	z-index: 1000;          
+  	text-align: center;
+	pointer-events: none;  
+}
+
+.hover p {
+	margin: 0;
+	font-family: "Ortica Linear Regular";
+	font-size: 76px;
+}
+
+
+/* image on click */
+
+.thermalSmall {
+  width: 150px;     
+}
+
+.thermalDouble {
+	width: 300px;
+}
+
+.thermalWide {
+	width: 400px;
+}
+
+.risoA2 {
+	width: 700px;
+}
+
+.risoA1 {
+	width: 900px;
+}
+
+.floating-stack {
+  position: fixed;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.floating-stack img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+ 
