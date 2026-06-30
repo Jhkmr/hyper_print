@@ -1,5 +1,11 @@
 const contentsDivs = document.querySelectorAll('.contents');
 const placeholder = document.getElementById('placeholder');
+const fakeCursor = document.getElementById('fake-cursor');
+
+document.addEventListener('mousemove', e => {
+  fakeCursor.style.left = e.clientX + 'px';
+  fakeCursor.style.top = e.clientY + 'px';
+});
 
 let globalStack = null;
 
@@ -85,11 +91,13 @@ contentsDivs.forEach(div => {
   div.dataset.index = 0;
 
   div.addEventListener('mouseenter', () => {
+    fakeCursor.style.display = 'block';
     const title = div.querySelector('span');
     if (title) placeholder.textContent = title.textContent;
   });
 
   div.addEventListener('mouseleave', () => {
+    fakeCursor.style.display = 'none';
     placeholder.textContent = 'Hyper';
   });
 

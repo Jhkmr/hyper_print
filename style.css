@@ -27,7 +27,7 @@ body {
 	height: 21vh;
 	display: block;
 	position: relative;
-	cursor: ne-resize;
+	cursor: none;
 }
 
 h1{
@@ -151,6 +151,15 @@ a {
 
 .risoA1 {
 	width: 900px;
+}
+
+#fake-cursor {
+	position: fixed;
+	pointer-events: none;
+	z-index: 9999;
+	width: 18px;
+	transform: translate(-50%, -50%);
+	display: none;
 }
 
 .floating-stack {
