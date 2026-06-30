@@ -75,6 +75,7 @@ h2::after{
   	margin: 0;
 	padding-right: 10%;
 	padding-top: 2%;
+	padding-bottom: 2%;
 	color: #818181;
 	position: absolute;
 	cursor: no-drop;

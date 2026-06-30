@@ -2,7 +2,7 @@ html{
 	height:  100%;
 	margin: 0;
 	padding: 0;
-	cursor: default;
+	cursor: none;
 }
 
 body {
@@ -15,10 +15,23 @@ body {
 	background: black;
 }
 
+div {
+	width: 90vw;
+  	height: 100%;
+	position: absolute;
+	display: flex;
+	overflow: hidden;
+	transform: rotate(0.5turn);
+	
+}
+
 #webcam {
-  width: auto;
-  height: 100%;
-  border-radius: 25px;
-  background: white;
-  transform: rotate(0.5turn);
+	height: 110%;
+	width: auto;
+	border-radius: 25px;
+	background: white;
+	position: relative;
+	text-align: center;
+	transform: translateX(-7%);
+	
 }
