@@ -1,0 +1,149 @@
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+body {
+    height: 100%;
+    padding: 1%;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+.raster {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    counter-reset: number 0;
+}
+
+.contents {
+    margin: 0;
+    padding: 10px;
+    height: 21vh;
+    display: block;
+    position: relative;
+    cursor: none;
+    z-index: 600;
+}
+
+.cell {
+    cursor: none;
+    transition: background 0.1s;
+}
+
+.cell:hover {
+    background: rgba(0, 0, 0, 0);
+}
+
+.cell.active {
+    background: rgba(0, 0, 0, 0);
+}
+
+h1 {
+    font-family: "Ortica Linear Regular";
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+}
+
+h2 {
+    font-family: "Ortica Linear Regular";
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+}
+
+h2::after {
+    counter-increment: number;
+    content: "( " counter(number, decimal-leading-zero) " )";
+    position: absolute;
+    right: 25px;
+    padding-top: 2.9px;
+    font-size: 12.5px;
+}
+
+.back {
+    font-family: "Ortica Linear Regular";
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 2%;
+    color: #818181;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+#fake-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 18px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.hover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
+}
+
+.hover p {
+    margin: 0;
+    font-family: "Ortica Linear Regular";
+    font-size: 76px;
+}
+
+/* Video container — hidden by default */
+.video-container {
+    position: fixed;
+    z-index: 500;
+    display: none;
+    background: white;
+}
+
+.video-container.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vertical video: occupies right 2 columns (40% of screen) */
+.video-container.vertical {
+    right: 0;
+    top: 0;
+    height: 110vh;
+    width: 30vw;
+}
+
+.video-container.vertical video {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    display: block;
+}
+
+/* Horizontal video: occupies middle-bottom (columns 2–4, bottom of screen) */
+.video-container.horizontal {
+    bottom: 0;
+    left: 20vw;
+    width: 60vw;
+}
+
+.video-container.horizontal video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    display: block;
+}

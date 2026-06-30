@@ -64,6 +64,17 @@ h2::after{
 	color: #818181;
 }
 
+.process {
+	font-family: "Ortica Linear Regular";
+	font-size: 12px;
+	font-weight: normal;
+  	margin: 0;
+	padding-right: 10%;
+	padding-top: 2%;
+	hyphens: auto;
+	color: #818181;
+}
+
 .webcam a {
 	cursor: url('files/camera_cursor.png') 9 9, pointer;
 }
